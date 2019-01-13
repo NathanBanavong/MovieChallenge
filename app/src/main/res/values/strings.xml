@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovieChallenge</string>
+    <string name="API_KEY">356eac6070dfe8dc38fba55888de3185</string>
 </resources>
