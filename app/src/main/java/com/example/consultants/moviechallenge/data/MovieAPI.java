@@ -1,7 +1,6 @@
 package com.example.consultants.moviechallenge.data;
 
 import android.content.Context;
-import android.graphics.Movie;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

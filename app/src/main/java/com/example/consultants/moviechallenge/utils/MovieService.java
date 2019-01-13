@@ -7,7 +7,6 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.example.consultants.moviechallenge.MovieServiceAIDL;
 import com.example.consultants.moviechallenge.data.MovieAPI;
 
 import java.io.Serializable;
@@ -35,15 +34,14 @@ public class MovieService extends Service {
         }
 
         @Override
-        public Bundle search(String aQuery, int pageNum) throws RemoteException {
+        public Bundle search(String leQuery, int pageNum) throws RemoteException {
             Bundle ret = new Bundle();
 
             try {
-                ret.putSerializable("data", (Serializable) api.search(aQuery, pageNum));
+                ret.putSerializable("data", (Serializable) api.search(leQuery, pageNum));
                 return ret;
             } catch (Exception e) {
-                System.out.println("__TAG__ " + e.getMessage());
-                Log.d(TAG, "search: " + e.toString());
+                Log.d(TAG, "search: " + e.getMessage());
                 return ret;
             }
         }

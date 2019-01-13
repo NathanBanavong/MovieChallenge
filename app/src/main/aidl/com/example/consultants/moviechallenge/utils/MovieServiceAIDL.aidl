@@ -10,5 +10,5 @@ interface MovieServiceAIDL {
      */
     String ping();
 
-    Bundle search(String aQuery, int pageNum);
+    Bundle search(String leQuery, int pageNum);
 }

@@ -84,6 +84,22 @@ public class MovieDB {
     @Expose
     private Integer voteCount;
 
+    @Override
+    public String toString() {
+        return "MovieDB{" +
+                "genres=" + genres +
+                ", id=" + id +
+                ", originalTitle='" + originalTitle + '\'' +
+                ", overview='" + overview + '\'' +
+                ", popularity=" + popularity +
+                ", posterPath='" + posterPath + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", runtime=" + runtime +
+                ", title='" + title + '\'' +
+                ", voteAverage=" + voteAverage +
+                '}';
+    }
+
     public Boolean getAdult() {
         return adult;
     }
