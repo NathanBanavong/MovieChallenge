@@ -11,9 +11,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.consultants.moviechallenge.R;
 import com.example.consultants.moviechallenge.data.repository.MovieDB;
-import com.example.consultants.moviechallenge.ui.viewholder.MovieViewHolder;
 
 import java.util.List;
+//import com.example.consultants.moviechallenge.utils.MovieService;
+////import com.example.movieservice.data.repository;
+////import com.example.consultants.moviechallenge.ui.viewholder.MovieViewHolder;
+////
+////import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 

@@ -8,10 +8,10 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+//import com.example.movieservice.MovieService;
+//import com.example.movieservice.MovieServiceAIDL;
+//import com.example.movieservice.data.repository.MovieDB;
 
-import com.example.consultants.moviechallenge.data.repository.MovieDB;
-import com.example.consultants.moviechallenge.utils.MovieService;
-import com.example.consultants.moviechallenge.utils.MovieServiceAIDL;
 
 import java.util.List;
 import java.util.concurrent.Callable;

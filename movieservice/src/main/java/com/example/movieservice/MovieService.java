@@ -1,4 +1,4 @@
-package com.example.consultants.moviechallenge.utils;
+package com.example.movieservice;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,7 +7,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
-import com.example.consultants.moviechallenge.data.MovieAPI;
+import com.example.movieservice.data.MovieAPI;
 
 import java.io.Serializable;
 
@@ -46,5 +46,4 @@ public class MovieService extends Service {
             }
         }
     };
-
 }
