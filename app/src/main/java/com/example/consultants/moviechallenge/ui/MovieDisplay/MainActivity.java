@@ -59,15 +59,16 @@ public class MainActivity extends AppCompatActivity {
         rvMovieList.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    //    TODO issues with the 'Single' onSubscribe
+//  setting the pageNum to 1 here
     public void onSearch(View view) {
+        Log.d(TAG, "onSearch: ");
         presenter.MovieSearch(etSearch.getText().toString(),
                 1)
 //                TODO Subscribe is returning a null object reference
                 .subscribe(new SingleObserver<List<MovieDB>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        Log.d(TAG, "onSubscribe: " + d.toString());
                     }
 
                     @Override
