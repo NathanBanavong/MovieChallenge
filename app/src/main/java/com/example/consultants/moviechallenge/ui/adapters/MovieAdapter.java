@@ -18,6 +18,9 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public static final String TAG = MovieAdapter.class.getSimpleName() + "_TAG";
     List<MovieDB> movieList;
 
+    public MovieAdapter(List<MovieDB> movies) {
+        this.movieList = movies;
+    }
 
     @NonNull
     @Override

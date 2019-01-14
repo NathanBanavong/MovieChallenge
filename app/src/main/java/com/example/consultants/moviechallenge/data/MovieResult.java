@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
+//Set the number of results into list of movies
 public class MovieResult implements Serializable {
 
     @SerializedName("page")
