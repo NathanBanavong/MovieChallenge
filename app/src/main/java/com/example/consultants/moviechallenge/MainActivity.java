@@ -17,9 +17,8 @@ import com.example.consultants.moviechallenge.utils.NetworkHelper;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RequestQueue queue;
     private EditText etSearch;
-    private String url;
+    private MoviePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,59 +30,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBindView() {
+
         etSearch = findViewById(R.id.etSearch);
+
+        presenter = MainPresenter.getInstance(this);
+        rvMovieList = findViewById( R.id.rvMovieList );
+        adapter = new MovieAdapter(new ArrayList<Movie>());
+        rvMovieList.setAdapter(adapter);
+        rvMovieList.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void onSearch(View view) {
 
-        queue = Volley.newRequestQueue(this);
-        url = NetworkHelper.SEARCH_URL + etSearch.getText();
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-//                    mTextView.setText("Response is: " + response.substring(0, 500));
-                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.toString(),
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
     }
-
-    //    --------------------------------------------------------------------
-//    RequestQueue queue = Volley.newRequestQueue(this);
-//    String url = NetworkHelper.URL;
-//
-//    // Request a string response from the provided URL.
-//    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-//            new Response.Listener<String>() {
-//                @Override
-//                public void onResponse(String response) {
-//                    // Display the first 500 characters of the response string.
-////                    mTextView.setText("Response is: " + response.substring(0, 500));
-//                    Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-//                }
-//            }, new Response.ErrorListener() {
-//        @Override
-//        public void onErrorResponse(VolleyError error) {
-//            Toast.makeText(getApplicationContext(), error.toString(),
-//                    Toast.LENGTH_LONG).show();
-//        }
-//    });
-//
-//// Add the request to the RequestQueue.
-//queue.add(stringRequest);
-//    --------------------------------------------------------------------
 
 }
