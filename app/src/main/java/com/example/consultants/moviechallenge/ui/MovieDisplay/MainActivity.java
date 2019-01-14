@@ -2,6 +2,7 @@ package com.example.consultants.moviechallenge.ui.MovieDisplay;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText etSearch;
     private MoviePresenter presenter;
     private RecyclerView rvMovieList;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.ItemAnimator itemAnimator;
     private MovieAdapter adapter;
 
     @Override
@@ -56,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
         rvMovieList.setLayoutManager(new LinearLayoutManager(this));
     }
 
-//    TODO issues with the 'Single' onSubscribe
+    //    TODO issues with the 'Single' onSubscribe
     public void onSearch(View view) {
         presenter.MovieSearch(etSearch.getText().toString(),
                 1)
+//                TODO Subscribe is returning a null object reference
                 .subscribe(new SingleObserver<List<MovieDB>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -73,11 +77,22 @@ public class MainActivity extends AppCompatActivity {
                         adapter.setMovies(movies);
                     }
 
+//                    TODO issue** returns a toast
                     @Override
                     public void onError(Throwable e) {
+                        Log.d(TAG, "onError: " + e.getMessage());
                         Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    public void onListUpdated(List<MovieDB> movieList) {
+        adapter = new MovieAdapter(movieList);
+        layoutManager = new LinearLayoutManager(this);
+        itemAnimator = new DefaultItemAnimator();
+        rvMovieList.setLayoutManager(layoutManager);
+        rvMovieList.setItemAnimator(itemAnimator);
+        rvMovieList.setAdapter(adapter);
     }
 
 }

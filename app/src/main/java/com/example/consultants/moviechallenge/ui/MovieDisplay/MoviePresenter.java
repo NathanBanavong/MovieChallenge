@@ -23,9 +23,10 @@ import io.reactivex.schedulers.Schedulers;
 public class MoviePresenter implements MovieContract.Presenter{
 
     public static final String TAG = MoviePresenter.class.getSimpleName()+"_TAG";
+    private MovieContract.View view;
     private static MoviePresenter lePresenter;
     private MovieServiceAIDL movieServiceAIDL;
-    private Boolean checkConnected = false;
+    private Boolean checkConnected = true;
 
     private ServiceConnection mConnection = new ServiceConnection() {
 
@@ -74,12 +75,16 @@ public class MoviePresenter implements MovieContract.Presenter{
 //    }
 
     public Single<List<MovieDB>> MovieSearch(final String input, final Integer pageNum) {
+//        if not connected will have issue
         if (!checkConnected) return null;
 
         return Single.fromCallable(new Callable<List<MovieDB>>() {
             @Override
             public List<MovieDB> call() throws Exception {
                 Bundle b = movieServiceAIDL.search(input, pageNum);
+//                TODO passed into the MainActivity - check
+                view.onListUpdated((List<MovieDB>) b.getSerializable("Data"));
+//                ---------------------------------------------------------------
                 return (List<MovieDB>) b.getSerializable("data");
             }
         })

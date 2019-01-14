@@ -12,7 +12,7 @@ public interface MovieContract {
     interface View extends BaseView {
 
 
-//        void onListUpdated(List<Repository> items);
+        void onListUpdated(List<MovieDB> items);
 
     }
 
