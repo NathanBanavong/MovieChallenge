@@ -13,6 +13,9 @@ import android.util.Log;
 //import com.example.movieservice.data.repository.MovieDB;
 
 
+import com.example.consultants.moviechallenge.data.repository.MovieDB;
+import com.example.consultants.moviechallenge.utils.MovieServiceAIDL;
+
 import java.util.List;
 import java.util.concurrent.Callable;
 

@@ -1,4 +1,4 @@
-package com.example.movieservice.data;
+package com.example.consultants.moviechallenge.data;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,7 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.RequestFuture;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.movieservice.data.repository.MovieDB;
+import com.example.consultants.moviechallenge.data.repository.MovieDB;
 import com.google.gson.Gson;
 
 import java.util.List;

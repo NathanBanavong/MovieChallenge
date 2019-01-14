@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.example.movieservice.data.repository.Genre;
 import com.example.movieservice.data.repository.ProductionCompany;
-import com.example.movieservice.data.repository.ProductionCountry;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

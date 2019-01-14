@@ -1,6 +1,6 @@
-package com.example.movieservice.data;
+package com.example.consultants.moviechallenge.data;
 
-import com.example.movieservice.data.repository.MovieDB;
+import com.example.consultants.moviechallenge.data.repository.MovieDB;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
