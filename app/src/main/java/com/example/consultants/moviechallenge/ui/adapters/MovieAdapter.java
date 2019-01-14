@@ -22,6 +22,11 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         this.movieList = movies;
     }
 
+    public void setMovies(List<MovieDB> movies) {
+        this.movieList = movies;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
