@@ -15,7 +15,7 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public static final String TAG = MovieAdapter.class.getSimpleName() + "_TAG";
-    List<MovieDB> movieList;
+    List<Movies> movieList;
 
 
     @NonNull
@@ -30,7 +30,7 @@ public class MovieAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        MovieDB movieDB = movieList.get(i);
+        Movies movieDB = movieList.get(i);
 //        TODO need to also have a detail view when clicked
         //case appropriate viewHolder
         MovieViewHolder movieViewHolder = (MovieViewHolder) viewHolder;
