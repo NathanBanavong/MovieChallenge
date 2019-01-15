@@ -8,13 +8,13 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-//import com.example.movieservice.MovieService;
-//import com.example.movieservice.MovieServiceAIDL;
-//import com.example.movieservice.data.repository.MovieDB;
+import com.example.movieservice.MovieService;
+import com.example.movieservice.MovieServiceAIDL;
+import com.example.movieservice.data.repository.MovieDB;
 
 
-import com.example.consultants.moviechallenge.data.repository.MovieDB;
-import com.example.consultants.moviechallenge.utils.MovieServiceAIDL;
+//import com.example.consultants.moviechallenge.data.repository.MovieDB;
+//import com.example.consultants.moviechallenge.utils.MovieServiceAIDL;
 
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -26,7 +26,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MoviePresenter implements MovieContract.Presenter {
 
     public static final String TAG = MoviePresenter.class.getSimpleName() + "_TAG";
-    private MovieContract.View view;
+//    private MovieContract.View view;
     private static MoviePresenter lePresenter;
     private MovieServiceAIDL movieServiceAIDL;
     private Boolean checkConnected = true;

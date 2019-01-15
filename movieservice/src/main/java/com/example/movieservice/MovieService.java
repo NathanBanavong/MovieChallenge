@@ -43,6 +43,7 @@ public class MovieService extends Service {
                 return ret;
             } catch (Exception e) {
                 Log.d(TAG, "search: " + e.getMessage());
+                System.out.println("_TAG"+e.getMessage());
                 return ret;
             }
         }

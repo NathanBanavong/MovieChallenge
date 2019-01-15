@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     //    TODO change etSearch to a 'searchview'
 //    private EditText etSearch;
     private android.support.v7.widget.SearchView svUserInput;
+
     private MoviePresenter presenter;
     private RecyclerView rvMovieList;
     private RecyclerView.LayoutManager layoutManager;
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                         adapter.setMovies(movies);
                     }
 
-                    //                    TODO issue** returns a toast
+//                    TODO ISSUE IS HERE!!
                     @Override
                     public void onError(Throwable e) {
                         Log.d(TAG, "onError: " + e.getMessage());
