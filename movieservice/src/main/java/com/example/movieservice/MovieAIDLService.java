@@ -1,24 +1,27 @@
-package com.example.consultants.moviechallenge.utils;
+package com.example.movieservice;
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.util.Log;
 
-//import com.example.consultants.moviechallenge.MovieServiceAIDL;
-import com.example.consultants.moviechallenge.data.MovieAPI;
+import com.example.movieservice.data.MovieAPI;
+import com.example.movieservice.data.Movies;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-public class MovieService extends Service {
+public class MovieAIDLService extends Service {
 
-    public static final String TAG = MovieService.class.getSimpleName() + "_TAG";
     MovieAPI api;
+    List<Movies> movieList = new ArrayList<>();
 
-    public MovieService() {
-        api = new MovieAPI(this);
+    public MovieAIDLService(String userInput, Integer pageNum)
+            throws ExecutionException, InterruptedException {
+        movieList = api.search(userInput, pageNum);
     }
 
     @Override
@@ -26,12 +29,10 @@ public class MovieService extends Service {
         return mBinder;
     }
 
-    //    reflected on the AIDL
     private final MovieServiceAIDL.Stub mBinder = new MovieServiceAIDL.Stub() {
-
         @Override
         public String ping() throws RemoteException {
-            return "ding-dong";
+            return "pong";
         }
 
         @Override
@@ -43,10 +44,8 @@ public class MovieService extends Service {
                 return ret;
             } catch (Exception e) {
                 System.out.println("__TAG__ " + e.getMessage());
-                Log.d(TAG, "search: " + e.toString());
                 return ret;
             }
         }
     };
-
 }
