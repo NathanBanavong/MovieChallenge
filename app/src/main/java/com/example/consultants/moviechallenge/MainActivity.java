@@ -18,7 +18,7 @@ import com.example.consultants.moviechallenge.utils.NetworkHelper;
 public class MainActivity extends AppCompatActivity {
 
     private EditText etSearch;
-    private MoviePresenter presenter;
+//    private MoviePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void onBindView() {
 
-        etSearch = findViewById(R.id.etSearch);
-
-        presenter = MainPresenter.getInstance(this);
-        rvMovieList = findViewById( R.id.rvMovieList );
-        adapter = new MovieAdapter(new ArrayList<Movie>());
-        rvMovieList.setAdapter(adapter);
-        rvMovieList.setLayoutManager(new LinearLayoutManager(this));
+//        etSearch = findViewById(R.id.etSearch);
+//
+//        presenter = MainPresenter.getInstance(this);
+//        rvMovieList = findViewById( R.id.rvMovieList );
+//        adapter = new MovieAdapter(new ArrayList<Movie>());
+//        rvMovieList.setAdapter(adapter);
+//        rvMovieList.setLayoutManager(new LinearLayoutManager(this));
     }
 
     public void onSearch(View view) {

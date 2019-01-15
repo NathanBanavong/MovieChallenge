@@ -29,22 +29,6 @@ public class MovieAPI {
         this.context = context;
     }
 
-//    public List<MovieResults> search(String query, Integer pageNum) throws ExecutionException, InterruptedException {
-//        Log.d(TAG, "search: " + query);
-//        RequestFuture<String> future = RequestFuture.newFuture();
-//        String url = BASE_URL +
-//                "?api_key=" + API_KEY +
-//                "&language=en-US&query=" + query +
-//                "&page=" + pageNum + "";
-//        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, future, future);
-//        RequestQueue queue = Volley.newRequestQueue(context);
-//        queue.add(stringRequest);
-//
-//        String response = future.get();
-//        MovieResult result = new Gson().fromJson(response, MovieResult.class);
-//        return result.getMovies();
-//    }
-
     public List<Movies> search(String query, Integer pageNum) throws ExecutionException, InterruptedException {
         Log.d(TAG, "search: " + query);
         RequestFuture<String> future = RequestFuture.newFuture();
