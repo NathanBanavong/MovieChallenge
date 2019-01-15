@@ -17,6 +17,7 @@ public class MovieService extends Service {
     MovieAPI api;
 
     public MovieService() {
+        Log.d(TAG, "MovieService: ");
         api = new MovieAPI(this);
     }
 
@@ -27,16 +28,16 @@ public class MovieService extends Service {
 
     //    reflected on the AIDL
     private final MovieServiceAIDL.Stub mBinder = new MovieServiceAIDL.Stub() {
-
         @Override
         public String ping() throws RemoteException {
+            Log.d(TAG, "ping: ");
             return "ding-dong";
         }
 
         @Override
         public Bundle search(String leQuery, int pageNum) throws RemoteException {
             Bundle ret = new Bundle();
-
+            Log.d(TAG, "search: " + ret.toString());
             try {
                 ret.putSerializable("data", (Serializable) api.search(leQuery, pageNum));
                 return ret;

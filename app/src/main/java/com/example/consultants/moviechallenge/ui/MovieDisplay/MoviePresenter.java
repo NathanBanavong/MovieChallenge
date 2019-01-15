@@ -23,13 +23,15 @@ import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MoviePresenter implements MovieContract.Presenter{
+public class MoviePresenter implements MovieContract.Presenter {
 
-    public static final String TAG = MoviePresenter.class.getSimpleName()+"_TAG";
+    public static final String TAG = MoviePresenter.class.getSimpleName() + "_TAG";
     private MovieContract.View view;
     private static MoviePresenter lePresenter;
     private MovieServiceAIDL movieServiceAIDL;
     private Boolean checkConnected = true;
+    private Integer pageNum;
+    private String userInput;
 
     private ServiceConnection mConnection = new ServiceConnection() {
 
@@ -51,13 +53,17 @@ public class MoviePresenter implements MovieContract.Presenter{
     };
 
     public MoviePresenter(Context context) {
-        Intent intent = new Intent(context, MovieService.class);
+        Log.d(TAG, "MoviePresenter: " + context.toString());
+//        TODO not referencing the 'MovieService.class' - using stub
+        Intent intent = new Intent(context, MovieServiceAIDL.Stub.class);
         intent.setAction(MovieServiceAIDL.class.getName());
         context.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
 
     public static MoviePresenter getInstance(Context context) {
+        Log.d(TAG, "getInstance: " + context.toString());
         if (lePresenter == null) {
+            Log.d(TAG, "getInstance: ");
             lePresenter = new MoviePresenter(context);
         }
         return lePresenter;
@@ -78,16 +84,37 @@ public class MoviePresenter implements MovieContract.Presenter{
 //    }
 
     public Single<List<MovieDB>> MovieSearch(final String input, final Integer pageNum) {
+        Log.d(TAG, "MovieSearch: " + input + "," + pageNum.toString());
 //        if not connected will have issue
         if (!checkConnected) return null;
 
+        this.pageNum = pageNum;
+        userInput = input;
+
+//        return Single.fromCallable(new Callable<List<MovieDB>>() {
+//            @Override
+//            public List<MovieDB> call() throws Exception {
+//                Bundle b = movieServiceAIDL.search(input, pageNum);
+////                TODO passed into the MainActivity - check
+////                view.onListUpdated((List<MovieDB>) b.getSerializable("Data"));
+////                ---------------------------------------------------------------
+//                return (List<MovieDB>) b.getSerializable("data");
+//            }
+//        })
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread());
+
+        return lazyLoad();
+    }
+
+    public Single<List<MovieDB>> lazyLoad() {
+        Log.d(TAG, "lazyLoad: ");
+        pageNum++;
         return Single.fromCallable(new Callable<List<MovieDB>>() {
             @Override
             public List<MovieDB> call() throws Exception {
-                Bundle b = movieServiceAIDL.search(input, pageNum);
-//                TODO passed into the MainActivity - check
-                view.onListUpdated((List<MovieDB>) b.getSerializable("Data"));
-//                ---------------------------------------------------------------
+                Bundle b = movieServiceAIDL.search(userInput, pageNum);
+                Log.d(TAG, "call: ");
                 return (List<MovieDB>) b.getSerializable("data");
             }
         })
@@ -97,11 +124,11 @@ public class MoviePresenter implements MovieContract.Presenter{
 
     @Override
     public void attachView(MovieContract.View view) {
-
+        Log.d(TAG, "attachView: ");
     }
 
     @Override
     public void removeView() {
-
+        Log.d(TAG, "removeView: ");
     }
 }

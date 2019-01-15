@@ -1,5 +1,6 @@
 // MovieServiceAIDL.aidl
 package com.example.movieservice;
+//package com.example.consultants.moviechallenge.utils;
 
 // Declare any non-default types here with import statements
 

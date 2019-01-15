@@ -23,6 +23,8 @@ public class MovieAPI {
     public static final String SEARCH_URL = "https://api.themoviedb.org/3/search/movie?api_key=356eac6070dfe8dc38fba55888de3185&language=en&query=";
     public static final String BASE_URL = "https://api.themoviedb.org/3/search/movie";
 
+    public static final String TEST_URL = "https://api.themoviedb.org/3/search/movie?api_key=356eac6070dfe8dc38fba55888de3185&language=en-US&query=spiderman&page=1";
+
     private Context context;
 
     public MovieAPI(Context context) {
@@ -36,6 +38,8 @@ public class MovieAPI {
                 "?api_key=" + API_KEY +
                 "&language=en-US&query=" + query +
                 "&page=" + pageNum + "";
+//        TODO TESTING URL - does work, above should be fine
+//        String url = TEST_URL;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, future, future);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(stringRequest);
