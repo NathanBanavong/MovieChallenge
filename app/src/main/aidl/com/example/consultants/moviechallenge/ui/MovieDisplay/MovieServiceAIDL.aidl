@@ -1,5 +1,5 @@
 // MovieServiceAIDL.aidl
-package com.example.consultants.moviechallenge.utils;
+package com.example.consultants.moviechallenge.ui.MovieDisplay;
 
 // Declare any non-default types here with import statements
 
@@ -8,7 +8,7 @@ interface MovieServiceAIDL {
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.
      */
-    String ping();
+      String ping();
 
-    Bundle search(String leQuery, int pageNum);
+      Bundle search(String aQuery, int pageNum);
 }

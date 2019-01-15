@@ -8,12 +8,12 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.example.movieservice.MovieService;
-import com.example.movieservice.MovieServiceAIDL;
-import com.example.movieservice.data.repository.MovieDB;
+//import com.example.movieservice.MovieService;
+//import com.example.movieservice.MovieServiceAIDL;
+//import com.example.movieservice.data.repository.MovieDB;
 
 
-//import com.example.consultants.moviechallenge.data.repository.MovieDB;
+import com.example.consultants.moviechallenge.data.repository.MovieDB;
 //import com.example.consultants.moviechallenge.utils.MovieServiceAIDL;
 
 import java.util.List;
@@ -55,7 +55,7 @@ public class MoviePresenter implements MovieContract.Presenter {
     public MoviePresenter(Context context) {
         Log.d(TAG, "MoviePresenter: " + context.toString());
 //        TODO not referencing the 'MovieService.class' - using stub
-        Intent intent = new Intent(context, MovieServiceAIDL.Stub.class);
+        Intent intent = new Intent(context, MovieServiceAIDL.class);
         intent.setAction(MovieServiceAIDL.class.getName());
         context.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
