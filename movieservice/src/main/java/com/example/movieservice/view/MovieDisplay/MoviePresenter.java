@@ -8,12 +8,15 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.example.movieservice.MovieAIDLService;
 import com.example.movieservice.MovieServiceAIDL;
 import com.example.movieservice.data.Movies;
 
 import java.util.List;
 import java.util.concurrent.Callable;
 
+import io.reactivex.Observable;
+import io.reactivex.Scheduler;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -50,7 +53,7 @@ public class MoviePresenter implements MovieContract.Presenter {
     public MoviePresenter(Context context) {
         Log.d(TAG, "MoviePresenter: " + context.toString());
 //        TODO not referencing the 'MovieService.class' - using stub
-        Intent intent = new Intent(context, MovieServiceAIDL.class);
+        Intent intent = new Intent(context, MovieAIDLService.class);
         intent.setAction(MovieServiceAIDL.class.getName());
         context.bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
     }
@@ -106,15 +109,53 @@ public class MoviePresenter implements MovieContract.Presenter {
         Log.d(TAG, "lazyLoad: ");
         pageNum++;
         return Single.fromCallable(new Callable<List<Movies>>() {
+//            TODO does not enter the 'call'
             @Override
             public List<Movies> call() throws Exception {
                 Bundle b = movieServiceAIDL.search(userInput, pageNum);
                 Log.d(TAG, "call: ");
-                return (List<Movies>) b.getSerializable("data");
+//                return (List<Movies>) b.getSerializable("data");
+                return b.getParcelableArrayList("data");
             }
         })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+//    TRY WITH OBSERVABLE-------------------------------------------------------------------------------
+    public Observable<List<Movies>> SearchMovie(final String input, final Integer pageNum) {
+        Log.d(TAG, "MovieSearch: " + input + "," + pageNum.toString());
+//        if not connected will have issue
+        if (!checkConnected) return null;
+
+        this.pageNum = pageNum;
+        userInput = input;
+
+        return LoadItems();
+    }
+
+    public Observable<List<Movies>> LoadItems(){
+        pageNum++;
+        return Observable.fromCallable(new Callable<List<Movies>>() {
+            @Override
+            public List<Movies> call() throws Exception {
+                Bundle b = movieServiceAIDL.search(userInput, pageNum);
+                Log.d(TAG, "call: ");
+//                return (List<Movies>) b.getSerializable("data");
+                return b.getParcelableArrayList("data");
+            }
+        })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    @Override
+    public void attachView(MovieContract.View view) {
+
+    }
+
+    @Override
+    public void removeView() {
+
+    }
 }

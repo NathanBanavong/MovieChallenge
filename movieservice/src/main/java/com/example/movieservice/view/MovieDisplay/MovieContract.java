@@ -1,6 +1,7 @@
 package com.example.movieservice.view.MovieDisplay;
 
 import com.example.movieservice.data.Movies;
+import com.example.movieservice.view.BasePresenter;
 import com.example.movieservice.view.BaseView;
 
 import java.util.List;
