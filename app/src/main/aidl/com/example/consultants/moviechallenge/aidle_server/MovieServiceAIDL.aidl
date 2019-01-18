@@ -1,6 +1,6 @@
 // MovieServiceAIDL.aidl
-package com.example.consultants.moviechallenge.utils;
-
+package com.example.consultants.moviechallenge;
+import com.example.movieservice.data.Movies;
 // Declare any non-default types here with import statements
 
 interface MovieServiceAIDL {

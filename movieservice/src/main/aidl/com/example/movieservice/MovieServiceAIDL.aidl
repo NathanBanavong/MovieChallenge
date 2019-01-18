@@ -1,7 +1,10 @@
 // MovieServiceAIDL.aidl
 package com.example.movieservice;
 
+//TODO check to see if this path, or the client path
+import com.example.movieservice.data.Movies;
 // Declare any non-default types here with import statements
+
 
 interface MovieServiceAIDL {
     /**
